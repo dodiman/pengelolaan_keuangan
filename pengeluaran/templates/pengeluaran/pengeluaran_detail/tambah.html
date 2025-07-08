@@ -1,0 +1,76 @@
+{% extends 'base.html' %} {% block title %} {% endblock %} {% block style %}
+{%endblock %} {% block content %}
+<!-- form pengeluaran -->
+<form class="bg-slate-50 flex flex-col gap-3 py-3 px-2" method="post">
+  <!-- header -->
+  <div class="flex justify-center mb-3">
+    <h2 class="capitalize font-semibold text-xl">Form Tambah Data</h2>
+  </div>
+  {% csrf_token %}
+  <div class="flex flex-col gap-1">
+    <label class="" for="id_nama">Nama</label>
+    <input
+      class="border border-black p-2 focus:ring-1 focus:ring-blue-400 focus:border-none focus:outline-none"
+      value="{{form.nama.value|default_if_none:''}}"
+      type="text"
+      name="nama"
+      id="id_nama"
+      placeholder="Nama"
+      required
+    />
+  </div>
+  <div class="flex flex-col gap-1">
+    <label for="id_jumlah">Jumlah</label>
+    <input
+      class="border border-black p-2 focus:border-none focus:outline-none focus:ring-2 focus:ring-blue-400"
+      value="{{form.jumlah.value|default_if_none:'0'}}"
+      type="number"
+      value="0"
+      name="jumlah"
+      id="id_jumlah"
+      placeholder="Jumlah"
+    />
+  </div>
+  <div class="flex flex-col gap-1">
+    <label for="id_total_harga">Total Harga</label>
+    <input
+      class="border border-black p-2 focus:outline-none focus:border-none focus:ring-2 focus:ring-blue-400"
+      value="{{form.total_harga.value|default_if_none:'0'}}"
+      type="number"
+      name="total_harga"
+      id="id_total_harga"
+      placeholder="Total Harga"
+    />
+  </div>
+  <div class="flex flex-col gap-1">
+    <label for="id_keterangan">Keterangan</label>
+    <textarea
+      class="border border-black p-2 focus:outline-none focus:border-none focus:ring-2 focus:ring-blue-400"
+      name="keterangan"
+      id="id_keterangan"
+      rows="3"
+    >
+{{form.keterangan.value|default_if_none:'-'}}</textarea
+    >
+  </div>
+
+  <input type="hidden" name="pengeluaran" value="{{pengeluaran.id}}" />
+
+  <div class="flex flex-row gap-2 items-center">
+    <button
+      class="bg-blue-600 text-white py-2 px-3 text-sm capitalize cursor-pointer hover:opacity-50 duration-300"
+      type="submit"
+    >
+      Simpan
+    </button>
+    <a
+      class="cursor-pointer hover:opacity-50 transition duration-300 bg-green-500 text-white text-sm py-2 px-3 capitalize"
+      href="{% url 'pengeluaran:pengeluaran_detail' pk=pengeluaran.id %}"
+      >Batal</a
+    >
+  </div>
+</form>
+
+<!-- untuk error -->
+{% for error in form.name.errors %} {{ error }} {% endfor %} {% endblock %}
+{%block scripts %} {% endblock %}

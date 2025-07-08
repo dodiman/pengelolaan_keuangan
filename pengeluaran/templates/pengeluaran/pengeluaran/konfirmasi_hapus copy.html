@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{% endblock %}
+
+{% block style %}
+{% endblock %}
+
+
+{% block content %}
+<p>apakah anda yakin ingin menghapus?</p>
+<!-- form pengeluaran -->
+ <form method="post">
+    {% csrf_token %}
+    <button type="submit">Ya</button>
+    <a href="{% url 'pengeluaran:pengeluaran_list' %}">Tidak</a>
+ </form>
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}

@@ -1,0 +1,50 @@
+<div class="flex gap-2 px-2 justify-between bg-slate-300">
+  <!-- sisi kiri -->
+  <div class="flex-1 flex gap-2 justify-start items-center">
+    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none">
+      <path
+        d="M5 12H20"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+      />
+      <path
+        d="M5 17H20"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+      />
+      <path
+        d="M5 7H20"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+      />
+    </svg>
+    <a
+      class="inline-flex text-xl capitalize font-semibold"
+      href="{% url 'pengeluaran:landing_page' %}"
+      >Pengelolaan Keuangan</a
+    >
+  </div>
+
+  <!-- sisi kanan -->
+  <div class="flex flex-row items-center px-2 py-2 gap-2">
+    {% if user.is_authenticated %}
+    <p>{{ user.username }}</p>
+    <ul>
+      <li class="">
+        <a
+          class="inline-block py-1 px-2 bg-green-500 text-white text-sm"
+          href="{% url 'akun:logout' %}"
+          >Logout</a
+        >
+      </li>
+    </ul>
+    {% else %}
+    <ul>
+      <li><a href="{% url 'akun:login' %}">login</a></li>
+    </ul>
+    {% endif %}
+  </div>
+</div>

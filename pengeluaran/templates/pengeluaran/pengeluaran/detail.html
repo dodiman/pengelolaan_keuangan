@@ -1,0 +1,138 @@
+{% extends 'base.html' %} {% block title %} {% endblock %} {% block style %}
+{%load format_filters %} {%endblock %} {% block content %}
+<!-- detail pengeluaran -->
+<!-- nama pengeluaran -->
+<div class="flex flex-col gap-2 px-2">
+  <div class="flex flex-row gap-2">
+    <span class="min-w-40">Nama</span>
+    <span> {{ pengeluaran.nama }} </span>
+  </div>
+  <!-- tombol tambah -->
+  <div>
+    <a
+      class="bg-green-500 text-white py-2 px-3 text-sm inline-flex capitalize"
+      href="{% url 'pengeluaran:pengeluaran_detail_tambah' pengeluaran.id %}"
+      >tambah</a
+    >
+  </div>
+</div>
+<!-- form pencarian -->
+<form class="py-2 px-2 flex flex-col bg-yellow-200" method="get">
+  <div class="flex flex-col gap-2">
+    <input
+      class="border py-2 px-2 min-w-80"
+      type="text"
+      name="q"
+      id="q"
+      placeholder="cari..."
+      value="{{ request.GET.q}}"
+    />
+    <div class="flex gap-2">
+      <input
+        type="date"
+        name="start_date"
+        id="start_date"
+        value="{{ request.GET.start_date }}"
+      />
+      <input
+        type="date"
+        name="end_date"
+        id="end_date"
+        value="{{ request.GET.end_date }}"
+      />
+    </div>
+  </div>
+  <div class="flex items-center gap-2 py-2">
+    <button
+      class="inline-flex py-2 px-3 bg-blue-500 cursor-pointer hover:opacity-80 transition-all text-white text-sm capitalize"
+      type="submit"
+    >
+      cari
+    </button>
+    <a href="{{ request.path }}">reset</a>
+  </div>
+</form>
+
+<!-- list -->
+<div class="overflow-auto">
+  <table class="min-w-full table-auto text-left mx-2 text-base">
+    <thead>
+      <tr>
+        <th class="p-2">Tanggal</th>
+        <th class="p-2">Nama</th>
+        <th class="p-2">Jumlah</th>
+        <th class="text-nowrap">Total Harga</th>
+        <th class="p-2">Keterangan</th>
+        <th class="p-2">#</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for detail_pengeluaran in detail_pengeluaran_list %}
+      <tr class="even:bg-blue-200 odd:bg-white">
+        <td class="p-2 text-nowrap">
+          {{ detail_pengeluaran.created_at|date:"d-m-Y" }}
+        </td>
+        <td class="p-2">
+          <a
+            href="{% url 'pengeluaran:pengeluaran_detail_tambah2' pengeluaran_id=pengeluaran.id pengeluaran_detail_id=detail_pengeluaran.id %}"
+            >{{ detail_pengeluaran.nama }}</a
+          >
+        </td>
+        <td class="p-2 text-nowrap">{{ detail_pengeluaran.jumlah|rupiah }}</td>
+        <td class="p-2 text-nowrap">
+          {{ detail_pengeluaran.total_harga|rupiah }}
+        </td>
+        <td class="p-2">
+          <div class="truncate w-full max-w-48">
+            {{ detail_pengeluaran.keterangan }}
+          </div>
+        </td>
+        <td class="p-2 text-nowrap">
+          <a
+            class="cursor-pointer"
+            href="{% url 'pengeluaran:pengeluaran_detail_delete' pk=detail_pengeluaran.id %}?next={{ request.path }}"
+          >
+            <svg
+              class="hover:text-gray-800 transition duration-150 w-5 h-5"
+              viewBox="0 0 1024 1024"
+              fill="currentColor"
+              class="icon"
+              version="1.1"
+            >
+              <path
+                d="M32 241.6c-11.2 0-20-8.8-20-20s8.8-20 20-20l940 1.6c11.2 0 20 8.8 20 20s-8.8 20-20 20L32 241.6zM186.4 282.4c0-11.2 8.8-20 20-20s20 8.8 20 20v688.8l585.6-6.4V289.6c0-11.2 8.8-20 20-20s20 8.8 20 20v716.8l-666.4 7.2V282.4z"
+                fill=""
+              />
+              <path
+                d="M682.4 867.2c-11.2 0-20-8.8-20-20V372c0-11.2 8.8-20 20-20s20 8.8 20 20v475.2c0.8 11.2-8.8 20-20 20zM367.2 867.2c-11.2 0-20-8.8-20-20V372c0-11.2 8.8-20 20-20s20 8.8 20 20v475.2c0.8 11.2-8.8 20-20 20zM524.8 867.2c-11.2 0-20-8.8-20-20V372c0-11.2 8.8-20 20-20s20 8.8 20 20v475.2c0.8 11.2-8.8 20-20 20zM655.2 213.6v-48.8c0-17.6-14.4-32-32-32H418.4c-18.4 0-32 14.4-32 32.8V208h-40v-42.4c0-40 32.8-72.8 72.8-72.8H624c40 0 72.8 32.8 72.8 72.8v48.8h-41.6z"
+                fill=""
+              />
+            </svg>
+          </a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<!-- paginasi -->
+<div>
+  {% if detail_pengeluaran_list.has_previous %}
+  <a href="?page=1">Awal</a>
+  <a href="?page={{ detail_pengeluaran_list.previous_page_number }}"
+    >Sebelumnya</a
+  >
+  {% endif %}
+  <span
+    >Halaman {{ detail_pengeluaran_list.number }} dari
+    {{detail_pengeluaran_list.paginator.num_pages }}</span
+  >
+
+  {% if detail_pengeluaran_list.has_next %}
+  <a href="?page={{ detail_pengeluaran_list.next_page_number }}">Selanjutnya</a>
+  <a href="?page={{ detail_pengeluaran_list.paginator.num_pages }}">Akhir</a>
+  {% endif %}
+</div>
+
+{% endblock %} {% block scripts %} {% endblock %}

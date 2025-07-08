@@ -1,0 +1,159 @@
+{% extends 'base.html' %} {% block title %} {% endblock %} {% block style %}
+{%endblock %}
+
+<!-- main content -->
+{% block content %}
+<div class="px-2 flex flex-col">
+  <!-- list pengeluaran -->
+  <!-- header -->
+  <div class="flex justify-between items-center max-w-72">
+    <p class="text-xl font-semibold capitalize">daftar pengeluaran</p>
+    <a class="inline-flex" href="{% url 'pengeluaran:pengeluaran_create' %}">
+      <span>Tambah</span>
+    </a>
+  </div>
+
+  <!-- form pencarian -->
+  <form class="py-2 px-2 flex flex-col bg-yellow-200" action="" method="get">
+    <div class="flex flex-col gap-2">
+      <input
+        class="border py-2 px-2 min-w-80"
+        type="text"
+        name="q"
+        id="q"
+        placeholder="cari..."
+        value="{{ request.GET.q}}"
+      />
+      <div class="flex gap-2">
+        <input
+          type="date"
+          name="start_date"
+          id="start_date"
+          value="{{ request.GET.start_date }}"
+        />
+        <input
+          class=""
+          type="date"
+          name="end_date"
+          id="end_date"
+          value="{{ request.GET.end_date }}"
+        />
+      </div>
+    </div>
+    <div class="flex items-center gap-2 py-2">
+      <button
+        class="inline-flex py-2 px-3 bg-blue-500 cursor-pointer hover:opacity-80 transition-all text-white text-sm capitalize"
+        type="submit"
+      >
+        cari
+      </button>
+      <a
+        class="inline-flex capitalize hover:text-blue-500 transition-all"
+        href="{{ request.path }}"
+        >reset</a
+      >
+    </div>
+  </form>
+  <!-- end form pencarian -->
+
+  <!-- list -->
+  <div class="flex flex-col">
+    <table class="table-auto w-full border-collapse text-left">
+      <thead>
+        <tr>
+          <th>Tanggal</th>
+          <th>Nama</th>
+          <th>#</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for pengeluaran in pengeluaran_list %}
+        <tr class="odd:bg-gray-100 even:bg-white">
+          <td>{{ pengeluaran.created_at|date:"d-m-Y" }}</td>
+          <td>{{ pengeluaran.nama }}</td>
+          <td class="inline-flex gap-2 text-gray-500">
+            <a
+              class="inline-flex opacity-65 hover:opacity-90 transition duration-300"
+              href="{% url 'pengeluaran:pengeluaran_update' pk=pengeluaran.id %}"
+            >
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M21.2799 6.40005L11.7399 15.94C10.7899 16.89 7.96987 17.33 7.33987 16.7C6.70987 16.07 7.13987 13.25 8.08987 12.3L17.6399 2.75002C17.8754 2.49308 18.1605 2.28654 18.4781 2.14284C18.7956 1.99914 19.139 1.92124 19.4875 1.9139C19.8359 1.90657 20.1823 1.96991 20.5056 2.10012C20.8289 2.23033 21.1225 2.42473 21.3686 2.67153C21.6147 2.91833 21.8083 3.21243 21.9376 3.53609C22.0669 3.85976 22.1294 4.20626 22.1211 4.55471C22.1128 4.90316 22.0339 5.24635 21.8894 5.5635C21.7448 5.88065 21.5375 6.16524 21.2799 6.40005V6.40005Z"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M11 4H6C4.93913 4 3.92178 4.42142 3.17163 5.17157C2.42149 5.92172 2 6.93913 2 8V18C2 19.0609 2.42149 20.0783 3.17163 20.8284C3.92178 21.5786 4.93913 22 6 22H17C19.21 22 20 20.2 20 18V13"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </a>
+            <a
+              class="inline-flex"
+              href="{% url 'pengeluaran:pengeluaran_detail' pk=pengeluaran.id %}"
+            >
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M15.7955 15.8111L21 21M18 10.5C18 14.6421 14.6421 18 10.5 18C6.35786 18 3 14.6421 3 10.5C3 6.35786 6.35786 3 10.5 3C14.6421 3 18 6.35786 18 10.5Z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </a>
+            <a
+              class="inline-flex"
+              href="{% url 'pengeluaran:pengeluaran_delete' pk=pengeluaran.id %}"
+            >
+              <svg
+                class="hover:text-gray-800 transition duration-150 w-5 h-5"
+                viewBox="0 0 1024 1024"
+                fill="currentColor"
+                class="icon"
+                version="1.1"
+              >
+                <path
+                  d="M32 241.6c-11.2 0-20-8.8-20-20s8.8-20 20-20l940 1.6c11.2 0 20 8.8 20 20s-8.8 20-20 20L32 241.6zM186.4 282.4c0-11.2 8.8-20 20-20s20 8.8 20 20v688.8l585.6-6.4V289.6c0-11.2 8.8-20 20-20s20 8.8 20 20v716.8l-666.4 7.2V282.4z"
+                  fill=""
+                />
+                <path
+                  d="M682.4 867.2c-11.2 0-20-8.8-20-20V372c0-11.2 8.8-20 20-20s20 8.8 20 20v475.2c0.8 11.2-8.8 20-20 20zM367.2 867.2c-11.2 0-20-8.8-20-20V372c0-11.2 8.8-20 20-20s20 8.8 20 20v475.2c0.8 11.2-8.8 20-20 20zM524.8 867.2c-11.2 0-20-8.8-20-20V372c0-11.2 8.8-20 20-20s20 8.8 20 20v475.2c0.8 11.2-8.8 20-20 20zM655.2 213.6v-48.8c0-17.6-14.4-32-32-32H418.4c-18.4 0-32 14.4-32 32.8V208h-40v-42.4c0-40 32.8-72.8 72.8-72.8H624c40 0 72.8 32.8 72.8 72.8v48.8h-41.6z"
+                  fill=""
+                />
+              </svg>
+            </a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <!-- end list -->
+  <!-- filter data -->
+  <br />
+  <div>
+    {% if pengeluaran_list.has_previous %}
+    <a href="?page=1">Awal</a>
+    <a href="?page={{ pengeluaran_list.previous_page_number }}">sebelumnya</a>
+    {% endif %}
+
+    <span
+      >Halaman {{ pengeluaran_list.number }} dari
+      {{pengeluaran_list.paginator.num_pages }}</span
+    >
+
+    {% if pengeluaran_list.has_next %}
+    <a href="?page={{ pengeluaran_list.next_page_number }}">Selanjutnya</a>
+    <a href="?page={{ pengeluaran_list.paginator.num_pages }}">Akhir</a>
+    {% endif %}
+  </div>
+</div>
+<!-- end main content -->
+
+{% endblock %} {% block scripts %} {% endblock %}

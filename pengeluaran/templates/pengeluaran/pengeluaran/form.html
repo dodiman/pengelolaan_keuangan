@@ -1,0 +1,45 @@
+{% extends 'base.html' %} {% load widget_tweaks %} {% block title %}
+{%endblock%} {% block style %} {%endblock %} {% block content %}
+<!-- form pengeluaran -->
+<form class="flex flex-col gap-2 p-2" method="post">
+  {% csrf_token %}
+  <div class="inline-flex items-center gap-2">
+    <label class="min-w-32 text-right" for="id_nama">Nama</label>
+    <input
+      class="border border-black py-2 px-3 flex-1"
+      type="text"
+      name="nama"
+      id="id_nama"
+      required
+      value="{{ form.nama.value|default_if_none:''}}"
+    />
+  </div>
+  <div class="flex items-center gap-2">
+    <label class="min-w-32 text-right" for="id_deskripsi">Deskripsi</label>
+    <input
+      value="{{ form.deskripsi.value|default_if_none:''}}"
+      class="border border-black py-2 px-3 flex-1"
+      required
+      type="text"
+      name="deskripsi"
+      id="id_deskripsi"
+    />
+  </div>
+  <div class="flex gap-2">
+    <span class="min-w-32"></span>
+    <div class="inline-flex items-center gap-2">
+      <button
+        class="bg-green-500 cursor-pointer hover:opacity-50 transition duration-300 text-white py-2 px-3 text-sm"
+        type="submit"
+      >
+        Simpan
+      </button>
+      <a
+        class="bg-blue-500 text-white py-2 px-3 text-sm cursor-pointer hover:opacity-50 transition duration-300"
+        href="{% url 'pengeluaran:pengeluaran_list' %}"
+        >Batal</a
+      >
+    </div>
+  </div>
+</form>
+{% endblock %} {% block scripts %} {% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{% endblock %}
+
+{% block style %}
+{% endblock %}
+
+
+{% block content %}
+{% url 'pengeluaran:pengeluaran_list' as my_url %}
+{% include "pengeluaran/partials/konfirmasi_hapus.html" with next_url=my_url %}
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}

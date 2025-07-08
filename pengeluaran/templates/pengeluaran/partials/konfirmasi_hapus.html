@@ -1,0 +1,27 @@
+{% extends 'base.html' %} {% block title %} {% endblock %} {% block style %}
+{%endblock %} {% block content %}
+<!--modal konfirmasi hapus -->
+<div
+  class="fixed z-50 backdrop-blur-sm inset-0 flex justify-center items-start pt-32"
+>
+  <div class="bg-green-300 w-96 flex flex-col py-4 gap-4 items-center">
+    <p>Apakah anda yakin ingin menghapus?</p>
+    <!-- form pengeluaran -->
+    <form method="post" class="flex items-center gap-4">
+      {% csrf_token %}
+      <button
+        class="bg-red-500 text-white py-2 px-4 cursor-pointer hover:opacity-60 transition duration-300 border-none rounded-lg"
+        type="submit"
+      >
+        Ya
+      </button>
+      <a
+        class="bg-white shadow-md py-2 px-4 rounded-lg hover:opacity-50 transition duration-300"
+        href="{{ next_url }}"
+        >Tidak</a
+      >
+    </form>
+  </div>
+</div>
+
+{% endblock %} {% block scripts %} {% endblock %}
