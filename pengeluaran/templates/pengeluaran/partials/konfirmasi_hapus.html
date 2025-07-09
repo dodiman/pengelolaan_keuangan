@@ -5,7 +5,7 @@
   class="fixed z-50 backdrop-blur-sm inset-0 flex justify-center items-start pt-32"
 >
   <div class="bg-green-300 w-96 flex flex-col py-4 gap-4 items-center">
-    <p>Apakah anda yakin ingin menghapus?</p>
+    <p>Apakah anda yakin ingin menghapus {% if obj %}<strong>{{ obj.nama }}</strong>{% endif %}? </p>
     <!-- form pengeluaran -->
     <form method="post" class="flex items-center gap-4">
       {% csrf_token %}

@@ -73,6 +73,11 @@ class PengeluaranDeleteView(LoginRequiredMixin, DeleteView):
     template_name = "pengeluaran/pengeluaran/konfirmasi_hapus.html"
     success_url = reverse_lazy("pengeluaran:pengeluaran_list")
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['obj'] = self.object
+        return context
+
 # class PengeluaranDetailView(DetailView):
 #     model = Pengeluaran
 #     template_name = "pengeluaran/pengeluaran_detail.html"
@@ -236,7 +241,8 @@ def pengeluaran_detail_delete(request, pk):
         return redirect(next_url)
     
     context = {
-        "next_url" : next_url
+        "next_url" : next_url,
+        "obj": obj
     }
     return render(request, "pengeluaran/pengeluaran_detail/konfirmasi_hapus.html", context)
 
