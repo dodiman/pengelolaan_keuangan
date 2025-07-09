@@ -1,4 +1,47 @@
-<!-- sidebar -->
-<div class="bg-yellow-400 flex-1 md:min-w-52 hidden">
-  <p>oke</p>
+<div id="sidebar" class="hidden bg-yellow-200 flex flex-col">
+  <ul class="px-2 min-w-72 flex flex-row w-full justify-between items-center">
+    <li>
+      <a href="{% url 'pengeluaran:pengeluaran_list' %}">list pengeluaran</a>
+    </li>
+    <li>
+      <a
+        class="inline-flex items-center gap-2 py-2 px-3"
+        href="{% url 'pengeluaran:pengeluaran_create' %}"
+      >
+        <svg class="w-5 h-5 text-gray-600" viewBox="0 0 24 24">
+          <defs>
+            <style>
+              .cls-1 {
+                fill: none;
+                stroke: currentColor;
+                stroke-linecap: round;
+                stroke-linejoin: bevel;
+                stroke-width: 1.5px;
+              }
+            </style>
+          </defs>
+
+          <g id="ic-actions-add">
+            <circle class="cls-1" cx="12" cy="12" r="10" />
+
+            <line class="cls-1" x1="17.19" y1="12.13" x2="7.19" y2="12.13" />
+
+            <line class="cls-1" x1="12.19" y1="17.13" x2="12.19" y2="7.13" />
+          </g>
+        </svg>
+        <span class="capitalize">tambah</span>
+      </a>
+    </li>
+  </ul>
+  <!-- list detail pengeluaran -->
+  <ul class="hidden">
+    <li>
+      <a href="{% url 'pengeluaran:pengeluaran_detail_list' %}"
+        >list detail pengeluaran</a
+      >
+    </li>
+    <li>
+      <a href="{% url 'pengeluaran:pengeluaran_detail_create' %}">tambah</a>
+    </li>
+  </ul>
 </div>

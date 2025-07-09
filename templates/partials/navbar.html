@@ -3,26 +3,59 @@
 >
   <!-- sisi kiri -->
   <div class="flex-1 flex gap-2 justify-start items-center">
-    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none">
-      <path
-        d="M5 12H20"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-      />
-      <path
-        d="M5 17H20"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-      />
-      <path
-        d="M5 7H20"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-      />
-    </svg>
+    <button
+      id="tombol-open-close-sidebar"
+      class="cursor-pointer inline-flex items-center"
+    >
+      <!-- icon open -->
+      <svg
+        id="icon-burger"
+        class="cursor-pointer w-5 h-5"
+        viewBox="0 0 24 24"
+        fill="none"
+      >
+        <path
+          d="M5 12H20"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+        <path
+          d="M5 17H20"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+        <path
+          d="M5 7H20"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+      </svg>
+      <!-- icon close -->
+      <svg
+        class="hidden w-4 h-4 cursor-pointer text-black"
+        id="icon-close"
+        viewBox="-0.5 0 25 25"
+        fill="none"
+      >
+        <path
+          d="M3 21.32L21 3.32001"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M3 3.32001L21 21.32"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </button>
     <a
       class="inline-flex text-lg capitalize font-semibold text-nowrap"
       href="{% url 'pengeluaran:landing_page' %}"
