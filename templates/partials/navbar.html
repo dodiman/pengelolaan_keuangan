@@ -1,4 +1,6 @@
-<div class="flex gap-2 px-2 justify-between bg-slate-300">
+<header
+  class="max-w-full overflow-hidden bg-gray-300 flex gap-2 py-2 px-2 flex-row flex-nowrap text-nowrap items-center"
+>
   <!-- sisi kiri -->
   <div class="flex-1 flex gap-2 justify-start items-center">
     <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none">
@@ -22,14 +24,14 @@
       />
     </svg>
     <a
-      class="inline-flex text-xl capitalize font-semibold text-nowrap"
+      class="inline-flex text-lg capitalize font-semibold text-nowrap"
       href="{% url 'pengeluaran:landing_page' %}"
       >Pengelolaan Keuangan</a
     >
   </div>
 
   <!-- sisi kanan -->
-  <div class="flex flex-row items-center px-2 py-2 gap-2">
+  <div class="flex flex-row flex-nowrap items-center px-2 py-2 gap-2">
     {% if user.is_authenticated %}
     <p>{{ user.username }}</p>
     <ul>
@@ -47,4 +49,4 @@
     </ul>
     {% endif %}
   </div>
-</div>
+</header>
