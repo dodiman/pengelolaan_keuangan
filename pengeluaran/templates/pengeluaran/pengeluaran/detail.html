@@ -74,11 +74,12 @@
         </td>
         <td class="p-2">
           <a
+            class="text-nowrap"
             href="{% url 'pengeluaran:pengeluaran_detail_tambah2' pengeluaran_id=pengeluaran.id pengeluaran_detail_id=detail_pengeluaran.id %}"
             >{{ detail_pengeluaran.nama }}</a
           >
         </td>
-        <td class="p-2 text-nowrap">{{ detail_pengeluaran.jumlah|rupiah }}</td>
+        <td class="p-2 text-nowrap">{{ detail_pengeluaran.jumlah }}</td>
         <td class="p-2 text-nowrap">
           {{ detail_pengeluaran.total_harga|rupiah }}
         </td>

@@ -225,10 +225,6 @@ def pengeluaran_detail_update(request, pk):
     }
     return render(request, "pengeluaran/pengeluaran_detail/form.html", context)
 
-# class PengeluaranDetailDeleteView(LoginRequiredMixin, DeleteView):
-#     model = DetailPengeluaran
-#     template_name = "pengeluaran/pengeluaran_detail/konfirmasi_hapus.html"
-#     success_url = reverse_lazy("pengeluaran:pengeluaran_detail_list")
 
 @login_required
 def pengeluaran_detail_delete(request, pk):

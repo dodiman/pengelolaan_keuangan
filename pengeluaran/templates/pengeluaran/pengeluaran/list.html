@@ -70,7 +70,10 @@
         {% for pengeluaran in pengeluaran_list %}
         <tr class="odd:bg-gray-100 even:bg-white">
           <td>{{ pengeluaran.created_at|date:"d-m-Y" }}</td>
-          <td>{{ pengeluaran.nama }}</td>
+          <td>
+            <a href="{% url 'pengeluaran:pengeluaran_detail' pk=pengeluaran.id %}">
+              {{ pengeluaran.nama }}</td>
+            </a>
           <td class="inline-flex gap-2 text-gray-500">
             <a
               class="inline-flex opacity-65 hover:opacity-90 transition duration-300"
