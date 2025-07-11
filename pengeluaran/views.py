@@ -9,7 +9,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.decorators import method_decorator
 from django.db.models import Q
 from django.utils.dateparse import parse_date
-from django.http import HttpResponse, FileResponse
+from django.http import FileResponse
 
 import pandas as pd
 import io
@@ -268,4 +268,3 @@ def download_file(reqeust, pk):
     buffer.seek(0)
 
     return FileResponse(buffer, as_attachment=True, filename="fileku.xlsx")
-    # return HttpResponse("oke")
