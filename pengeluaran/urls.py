@@ -19,6 +19,7 @@ urlpatterns = [
     path("pengeluaranDetail/<str:pk>", views.PengeluaranDetailDetailView.as_view(), name="pengeluaran_detail_detail"),
     path("pengeluaranDetail/<str:pk>/hapus/", views.pengeluaran_detail_delete, name="pengeluaran_detail_delete"),
 
+    path("download_file/<str:pk>", views.download_file, name="download_file"),
     path("", views.index, name="landing_page"),
 ]
 

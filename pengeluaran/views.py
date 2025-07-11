@@ -9,6 +9,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.decorators import method_decorator
 from django.db.models import Q
 from django.utils.dateparse import parse_date
+from django.http import HttpResponse, FileResponse
+
+import pandas as pd
+import io
 
 @login_required
 def index(request):
@@ -251,6 +255,17 @@ class PengeluaranDetailDetailView(LoginRequiredMixin, DetailView):
     template_name = "pengeluaran/pengeluaran_detail/detail.html"
     context_object_name = "pengeluaran_detail"
 
+def download_file(reqeust, pk):
+    obj = get_object_or_404(Pengeluaran, pk=pk)
+    df = pd.DataFrame(obj.detailpengeluaran_set.all().values())
 
+    # konversi waktu (time zone)
+    df['created_at'] = df['created_at'].dt.tz_localize(None)
+    df['updated_at'] = df['updated_at'].dt.tz_localize(None)
 
+    buffer = io.BytesIO()
+    df.to_excel(buffer, index=False)
+    buffer.seek(0)
 
+    return FileResponse(buffer, as_attachment=True, filename="fileku.xlsx")
+    # return HttpResponse("oke")

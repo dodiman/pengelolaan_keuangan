@@ -7,14 +7,6 @@
     <span class="min-w-40">Nama</span>
     <span> {{ pengeluaran.nama }} </span>
   </div>
-  <!-- tombol tambah -->
-  <div>
-    <a
-      class="bg-green-500 text-white py-2 px-3 text-sm inline-flex capitalize"
-      href="{% url 'pengeluaran:pengeluaran_detail_tambah' pengeluaran.id %}"
-      >tambah</a
-    >
-  </div>
 </div>
 <!-- form pencarian -->
 <form class="py-2 px-2 flex flex-col bg-yellow-200" method="get">
@@ -52,7 +44,57 @@
     <a href="{{ request.path }}">reset</a>
   </div>
 </form>
+<!-- kotak aksi -->
+<div class="flex gap-2 flex-nowrap">
+  <!-- tombol tambah -->
+  <a
+    class="hover:opacity-60 transition duration-300"
+    href="{% url 'pengeluaran:pengeluaran_detail_tambah' pengeluaran.id %}"
+  >
+    <svg class="w-10 h-10 text-blue-400" viewBox="0 0 24 24" fill="none">
+      <path
+        d="M15 12L12 12M12 12L9 12M12 12L12 9M12 12L12 15"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+      />
+      <path
+        d="M22 12C22 16.714 22 19.0711 20.5355 20.5355C19.0711 22 16.714 22 12 22C7.28595 22 4.92893 22 3.46447 20.5355C2 19.0711 2 16.714 2 12C2 7.28595 2 4.92893 3.46447 3.46447C4.92893 2 7.28595 2 12 2C16.714 2 19.0711 2 20.5355 3.46447C21.5093 4.43821 21.8356 5.80655 21.9449 8"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+      />
+    </svg>
+  </a>
 
+  <!-- download tabel -->
+  <a
+    class="hover:opacity-60 transition duration-300"
+    href="{% url 'pengeluaran:download_file' pengeluaran.id %}"
+  >
+    <svg class="w-10 h-10 text-blue-400" viewBox="0 0 24 24" fill="none">
+      <path
+        d="M12 7L12 14M12 14L15 11M12 14L9 11"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M16 17H12H8"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+      />
+      <path
+        d="M22 12C22 16.714 22 19.0711 20.5355 20.5355C19.0711 22 16.714 22 12 22C7.28595 22 4.92893 22 3.46447 20.5355C2 19.0711 2 16.714 2 12C2 7.28595 2 4.92893 3.46447 3.46447C4.92893 2 7.28595 2 12 2C16.714 2 19.0711 2 20.5355 3.46447C21.5093 4.43821 21.8356 5.80655 21.9449 8"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+      />
+    </svg>
+  </a>
+</div>
 <!-- list -->
 <div class="overflow-auto">
   <table class="min-w-full table-auto text-left mx-2 text-base">
