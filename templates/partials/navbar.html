@@ -4,11 +4,13 @@
   <!-- sisi kiri -->
   <div class="flex-1 flex gap-2 justify-start items-center">
     <button
+      @click="$store.ui.sidebarOpen = !$store.ui.sidebarOpen"
       id="tombol-open-close-sidebar"
       class="cursor-pointer inline-flex items-center"
     >
-      <!-- icon open -->
+      <!-- icon burger -->
       <svg
+        x-show="!$store.ui.sidebarOpen"
         id="icon-burger"
         class="cursor-pointer w-5 h-5"
         viewBox="0 0 24 24"
@@ -35,7 +37,8 @@
       </svg>
       <!-- icon close -->
       <svg
-        class="hidden w-5 h-5 cursor-pointer text-black"
+        x-show="$store.ui.sidebarOpen"
+        class="w-5 h-5 cursor-pointer text-black"
         id="icon-close"
         viewBox="-0.5 0 25 25"
         fill="none"
