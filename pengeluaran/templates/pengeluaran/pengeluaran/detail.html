@@ -45,7 +45,7 @@
   </div>
 </form>
 <!-- kotak aksi -->
-<div class="flex gap-2 flex-nowrap">
+<div class="flex px-2 gap-2 flex-nowrap">
   <!-- tombol tambah -->
   <a
     class="hover:opacity-60 transition duration-300"
@@ -96,8 +96,8 @@
   </a>
 </div>
 <!-- list -->
-<div class="overflow-auto">
-  <table class="min-w-full table-auto text-left mx-2 text-base">
+<div class="overflow-auto px-2">
+  <table class="min-w-full table-auto text-left text-base">
     <thead>
       <tr>
         <th class="p-2">Tanggal</th>
@@ -157,25 +157,27 @@
       {% endfor %}
     </tbody>
   </table>
+
+  <!-- paginasi -->
+  <div class="py-2">
+    {% if detail_pengeluaran_list.has_previous %}
+    <a href="?page=1">Awal</a>
+    <a href="?page={{ detail_pengeluaran_list.previous_page_number }}"
+      >Sebelumnya</a
+    >
+    {% endif %}
+    <span
+      >Halaman {{ detail_pengeluaran_list.number }} dari
+      {{detail_pengeluaran_list.paginator.num_pages }}</span
+    >
+  
+    {% if detail_pengeluaran_list.has_next %}
+    <a href="?page={{ detail_pengeluaran_list.next_page_number }}">Selanjutnya</a>
+    <a href="?page={{ detail_pengeluaran_list.paginator.num_pages }}">Akhir</a>
+    {% endif %}
+  </div>
 </div>
 
-<!-- paginasi -->
-<div>
-  {% if detail_pengeluaran_list.has_previous %}
-  <a href="?page=1">Awal</a>
-  <a href="?page={{ detail_pengeluaran_list.previous_page_number }}"
-    >Sebelumnya</a
-  >
-  {% endif %}
-  <span
-    >Halaman {{ detail_pengeluaran_list.number }} dari
-    {{detail_pengeluaran_list.paginator.num_pages }}</span
-  >
 
-  {% if detail_pengeluaran_list.has_next %}
-  <a href="?page={{ detail_pengeluaran_list.next_page_number }}">Selanjutnya</a>
-  <a href="?page={{ detail_pengeluaran_list.paginator.num_pages }}">Akhir</a>
-  {% endif %}
-</div>
-
-{% endblock %} {% block scripts %} {% endblock %}
+{% endblock %}
+{% block scripts %} {% endblock %}
