@@ -148,6 +148,7 @@ def pengeluaran_detail(request, pk):
     detail_pengeluaran_list = paginator.get_page(page_number)
 
     context = {
+        "total_data": len(data),
         "pengeluaran": pengeluaran,
         "detail_pengeluaran_list": detail_pengeluaran_list,
     }
