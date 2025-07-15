@@ -1,7 +1,9 @@
 from django.db import models
 from core.models import BaseModel
+from django.contrib.auth.models import User
 
 class Pengeluaran(BaseModel):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     nama = models.CharField(max_length=100, null=True, blank=True)
     deskripsi = models.CharField(max_length=200, null=True, blank=True)
 

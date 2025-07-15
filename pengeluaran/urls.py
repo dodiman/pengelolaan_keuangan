@@ -5,7 +5,8 @@ app_name = 'pengeluaran'
 
 urlpatterns = [
     path("pengeluaran/", views.pengeluaran_list, name="pengeluaran_list"),
-    path("pengeluaran/tambah/", views.PengeluaranCreateView.as_view(), name="pengeluaran_create"),
+    path("pengeluaran/tambah/", views.pengeluaran_create, name="pengeluaran_create"),
+    # path("pengeluaran/tambah/", views.PengeluaranCreateView.as_view(), name="pengeluaran_create"),
     path("pengeluaran/<str:pk>/edit/", views.PengeluaranUpdateView.as_view(), name="pengeluaran_update"),
     path("pengeluaran/<str:pk>", views.pengeluaran_detail, name="pengeluaran_detail"),
     path("pengeluaran/<str:pk>/hapus/", views.PengeluaranDeleteView.as_view(), name="pengeluaran_delete"),

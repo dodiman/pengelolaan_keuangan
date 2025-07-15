@@ -31,7 +31,8 @@ def pengeluaran_list(request):
     start_date = request.GET.get("start_date")
     end_date = request.GET.get("end_date")
 
-    data = Pengeluaran.objects.all()
+    # data = Pengeluaran.objects.all()
+    data = request.user.pengeluaran_set.all()
     
     if q:
         data = data.filter(Q(nama__icontains=q))
@@ -55,16 +56,35 @@ def pengeluaran_list(request):
     page_number = request.GET.get('page')
     pengeluaran_list = paginator.get_page(page_number)
 
+    template_name = "pengeluaran/pengeluaran/list.html"
     context = {
         "pengeluaran_list": pengeluaran_list,
     }
-    return render(request, "pengeluaran/pengeluaran/list.html", context)
+    return render(request, template_name, context)
 
-class PengeluaranCreateView(LoginRequiredMixin, CreateView):
-    model = Pengeluaran
-    form_class = PengeluaranForm
+# class PengeluaranCreateView(LoginRequiredMixin, CreateView):
+#     model = Pengeluaran
+#     form_class = PengeluaranForm
+#     template_name = "pengeluaran/pengeluaran/form.html"
+#     success_url = reverse_lazy("pengeluaran:pengeluaran_list")
+
+@login_required
+def pengeluaran_create(request):
+    form = PengeluaranForm(request.POST or None)
+    success_url = "pengeluaran:pengeluaran_list"
     template_name = "pengeluaran/pengeluaran/form.html"
-    success_url = reverse_lazy("pengeluaran:pengeluaran_list")
+
+    if request.method == "POST":
+        if form.is_valid():
+            temp = form.save(commit=False)
+            temp.user = request.user
+            temp.save()
+            return redirect(success_url)
+        
+    context = {
+        "form": form
+    }
+    return render(request, template_name, context)
 
 class PengeluaranUpdateView(LoginRequiredMixin, UpdateView):
     model = Pengeluaran
