@@ -156,10 +156,11 @@
       </tr>
       {% endfor %}
     </tbody>
-  </table>
+  </table>  
+</div>
 
-  <!-- paginasi -->
-  <div class="py-2">
+<!-- paginasi -->
+  <div class="py-2 px-2">
     {% if detail_pengeluaran_list.has_previous %}
     <a href="?page=1">Awal</a>
     <a href="?page={{ detail_pengeluaran_list.previous_page_number }}"
@@ -176,7 +177,6 @@
     <a href="?page={{ detail_pengeluaran_list.paginator.num_pages }}">Akhir</a>
     {% endif %}
   </div>
-</div>
 
 
 {% endblock %}
