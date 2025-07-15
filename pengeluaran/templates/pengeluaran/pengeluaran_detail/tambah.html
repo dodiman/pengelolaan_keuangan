@@ -1,4 +1,5 @@
 {% extends 'base.html' %} {% block title %} {% endblock %} {% block style %}
+{% load static %}
 {%endblock %} {% block content %}
 <!-- form pengeluaran -->
 <form class="bg-slate-50 flex flex-col gap-3 py-3 px-2" method="post">
@@ -36,10 +37,16 @@
     <input
       class="border border-black p-2 focus:outline-none focus:border-none focus:ring-2 focus:ring-blue-400"
       value="{{form.total_harga.value|default_if_none:'0'}}"
-      type="number"
+      type="text"
+      name="total_harga_temp"
+      id="id_total_harga_temp"
+      placeholder="Total Harga"
+      />
+    <input 
+      value="{{form.total_harga.value|default_if_none:'0'}}"
+      type="hidden"
       name="total_harga"
       id="id_total_harga"
-      placeholder="Total Harga"
     />
   </div>
   <div class="flex flex-col gap-1">
@@ -73,4 +80,6 @@
 
 <!-- untuk error -->
 {% for error in form.name.errors %} {{ error }} {% endfor %} {% endblock %}
-{%block scripts %} {% endblock %}
+{%block scripts %}
+    <script src="{% static 'js/komponen/format_bilangan.js' %}"></script>
+{% endblock %}
