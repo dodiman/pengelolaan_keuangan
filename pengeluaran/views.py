@@ -220,7 +220,7 @@ def pengeluaran_detail_create(request, pengeluaran_id=None, pengeluaran_detail_i
     form.fields['pengeluaran'].initial = pengeluaran
 
     if request.method == "POST":
-        print(request.POST)
+        # print(request.POST)
         if form.is_valid():
             form.save()
             return redirect("pengeluaran:pengeluaran_detail", pk=pengeluaran.id)
