@@ -7,7 +7,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.decorators import method_decorator
-from django.db.models import Q
+from django.db.models import Q, Sum
 from django.utils.dateparse import parse_date
 from django.http import FileResponse
 
@@ -147,8 +147,11 @@ def pengeluaran_detail(request, pk):
     page_number = request.GET.get("page")
     detail_pengeluaran_list = paginator.get_page(page_number)
 
+    total_harga = data.aggregate(hasil=Sum('total_harga'))['hasil']
+
     context = {
         "total_data": len(data),
+        "total_harga": total_harga,
         "pengeluaran": pengeluaran,
         "detail_pengeluaran_list": detail_pengeluaran_list,
     }
