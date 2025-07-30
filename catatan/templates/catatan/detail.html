@@ -1,0 +1,52 @@
+{% extends 'base.html' %} {% block content %}
+<!-- body detail -->
+<div class="p-2 flex flex-col gap-3">
+  <!-- header -->
+  <div class="flex flex-row justify-between">
+    <div class="flex flex-row items-center gap-2">
+      <a href="{% url 'catatan:list' %}">
+        <svg
+        class="w-auto h-8 border rounded-lg hover:opacity-75 transition-all duration-300 px-1 text-gray-500"
+          viewBox="0 0 1024 1024"
+          fill="currentColor"
+        >
+          <path
+            d="M669.6 849.6c8.8 8 22.4 7.2 30.4-1.6s7.2-22.4-1.6-30.4l-309.6-280c-8-7.2-8-17.6 0-24.8l309.6-270.4c8.8-8 9.6-21.6 2.4-30.4-8-8.8-21.6-9.6-30.4-2.4L360.8 480.8c-27.2 24-28 64-0.8 88.8l309.6 280z"
+            fill=""
+          />
+        </svg>
+      </a>
+      <span class="flex-1">Rincian</span>
+    </div>
+    <div class="flex flex-row gap-2 items-center">
+      <span class="">{{ catatan.created_at|date:"d-m-Y"}}</span>
+      <a href="{% url 'catatan:update' catatan.id %}">
+        <svg class="w-5 h-5 text-gray-500" viewBox="0 0 24 24" fill="none">
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M3.25 22C3.25 21.5858 3.58579 21.25 4 21.25H20C20.4142 21.25 20.75 21.5858 20.75 22C20.75 22.4142 20.4142 22.75 20 22.75H4C3.58579 22.75 3.25 22.4142 3.25 22Z"
+            fill="currentColor"
+          />
+          <path
+            d="M11.5201 14.929L11.5201 14.9289L17.4368 9.01225C16.6315 8.6771 15.6777 8.12656 14.7757 7.22455C13.8736 6.32238 13.323 5.36846 12.9879 4.56312L7.07106 10.4799L7.07101 10.48C6.60932 10.9417 6.37846 11.1725 6.17992 11.4271C5.94571 11.7273 5.74491 12.0522 5.58107 12.396C5.44219 12.6874 5.33894 12.9972 5.13245 13.6167L4.04356 16.8833C3.94194 17.1882 4.02128 17.5243 4.2485 17.7515C4.47573 17.9787 4.81182 18.0581 5.11667 17.9564L8.38334 16.8676C9.00281 16.6611 9.31256 16.5578 9.60398 16.4189C9.94775 16.2551 10.2727 16.0543 10.5729 15.8201C10.8275 15.6215 11.0584 15.3907 11.5201 14.929Z"
+            fill="currentColor"
+          />
+          <path
+            d="M19.0786 7.37044C20.3071 6.14188 20.3071 4.14999 19.0786 2.92142C17.85 1.69286 15.8581 1.69286 14.6296 2.92142L13.9199 3.63105C13.9296 3.6604 13.9397 3.69015 13.9502 3.72028C14.2103 4.47 14.701 5.45281 15.6243 6.37602C16.5475 7.29923 17.5303 7.78999 18.28 8.05009C18.31 8.0605 18.3396 8.07054 18.3688 8.08021L19.0786 7.37044Z"
+            fill="currentColor"
+          />
+        </svg>
+      </a>
+    </div>
+  </div>
+  <hr class="border-t-2 border-gray-300" />
+  <!-- body -->
+  <div class="flex flex-col gap-2">
+    {% include 'catatan/partials/card/keterangan.html' with key='judul' value=catatan.judul %}
+    {% include 'catatan/partials/card/keterangan.html' with key='isi_catatan' value=catatan.isi_catatan %}
+    {% include 'catatan/partials/card/keterangan.html' with key='kategori' value=catatan.kategori %}
+    {% include 'catatan/partials/card/keterangan.html' with key='tag' value=catatan.tag %}
+  </div>
+</div>
+{% endblock %}

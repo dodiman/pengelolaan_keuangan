@@ -1,37 +1,81 @@
-<div x-show="$store.ui.sidebarOpen" x-cloak x-transition id="sidebar" class="fixed top-12 w-full z-50 bg-yellow-200 flex-col">
-  <ul class="px-2 min-w-72 flex flex-row w-full justify-between items-center">
-    <li>
-      <a href="{% url 'pengeluaran:pengeluaran_list' %}">list pengeluaran</a>
-    </li>
-    <li>
-      <a
-        class="inline-flex items-center gap-2 py-2 px-3"
-        href="{% url 'pengeluaran:pengeluaran_create' %}"
-      >
-        <svg class="w-5 h-5 text-gray-600" viewBox="0 0 24 24">
-          <defs>
-            <style>
-              .cls-1 {
-                fill: none;
-                stroke: currentColor;
-                stroke-linecap: round;
-                stroke-linejoin: bevel;
-                stroke-width: 1.5px;
-              }
-            </style>
-          </defs>
+<div
+  x-show="$store.ui.sidebarOpen"
+  x-cloak
+  x-transition
+  id="sidebar"
+  class="fixed top-12 w-full z-50 bg-yellow-200 flex-col"
+>
+  <ul class="px-2 min-w-72 flex flex-col w-full">
+    <!-- menu list pengeluaran -->
+    <div class="flex flex-row flex-nowrap items-center justify-between w-full">
+      <li>
+        <a href="{% url 'pengeluaran:pengeluaran_list' %}">list pengeluaran</a>
+      </li>
+      <li>
+        <a
+          class="inline-flex items-center gap-2 py-2 px-3"
+          href="{% url 'pengeluaran:pengeluaran_create' %}"
+        >
+          <svg class="w-5 h-5 text-gray-600" viewBox="0 0 24 24">
+            <defs>
+              <style>
+                .cls-1 {
+                  fill: none;
+                  stroke: currentColor;
+                  stroke-linecap: round;
+                  stroke-linejoin: bevel;
+                  stroke-width: 1.5px;
+                }
+              </style>
+            </defs>
 
-          <g id="ic-actions-add">
-            <circle class="cls-1" cx="12" cy="12" r="10" />
+            <g id="ic-actions-add">
+              <circle class="cls-1" cx="12" cy="12" r="10" />
 
-            <line class="cls-1" x1="17.19" y1="12.13" x2="7.19" y2="12.13" />
+              <line class="cls-1" x1="17.19" y1="12.13" x2="7.19" y2="12.13" />
 
-            <line class="cls-1" x1="12.19" y1="17.13" x2="12.19" y2="7.13" />
-          </g>
-        </svg>
-        <span class="capitalize">tambah</span>
-      </a>
-    </li>
+              <line class="cls-1" x1="12.19" y1="17.13" x2="12.19" y2="7.13" />
+            </g>
+          </svg>
+          <span class="capitalize">tambah</span>
+        </a>
+      </li>
+    </div>
+    <!-- menu catatan -->
+     <div class="flex flex-row flex-nowrap items-center justify-between w-full">
+      <li>
+        <a href="{% url 'catatan:list' %}">Catatan</a>
+      </li>
+      <li>
+        <a
+          class="inline-flex items-center gap-2 py-2 px-3"
+          href="{% url 'catatan:create' %}"
+        >
+          <svg class="w-5 h-5 text-gray-600" viewBox="0 0 24 24">
+            <defs>
+              <style>
+                .cls-1 {
+                  fill: none;
+                  stroke: currentColor;
+                  stroke-linecap: round;
+                  stroke-linejoin: bevel;
+                  stroke-width: 1.5px;
+                }
+              </style>
+            </defs>
+
+            <g id="ic-actions-add">
+              <circle class="cls-1" cx="12" cy="12" r="10" />
+
+              <line class="cls-1" x1="17.19" y1="12.13" x2="7.19" y2="12.13" />
+
+              <line class="cls-1" x1="12.19" y1="17.13" x2="12.19" y2="7.13" />
+            </g>
+          </svg>
+          <span class="capitalize">tambah</span>
+        </a>
+      </li>
+    </div>
   </ul>
   <!-- list detail pengeluaran -->
   <ul class="hidden">

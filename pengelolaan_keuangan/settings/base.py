@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'core',
     'akun',
     'widget_tweaks',
+    'catatan',
 ]
 
 MIDDLEWARE = [

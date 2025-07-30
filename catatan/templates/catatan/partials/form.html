@@ -1,0 +1,67 @@
+{% extends 'base.html' %} {% block content %}
+<form action="" method="post" class="flex flex-col gap-2 p-2">
+  {% csrf_token %}
+  <div class="inline-flex items-center gap-2">
+    <label class="min-w-32 text-right" for="judul">Judul</label>
+    <input
+      type="text"
+      value="{{ form.judul.value|default_if_none:''}}"
+      name="judul"
+      placeholder="Judul"
+      id="judul"
+      class="border border-black py-2 px-3 flex-1"
+    />
+  </div>
+  <div class="inline-flex items-center gap-2">
+    <label class="min-w-32 text-right" for="isi_catatan">Isi</label>
+    <input
+      type="text"
+      value="{{ form.isi_catatan.value|default_if_none:''}}"
+      name="isi_catatan"
+      placeholder="Isi"
+      id="isi_catatan"
+      class="border border-black py-2 px-3 flex-1"
+    />
+  </div>
+  <div class="inline-flex items-center gap-2">
+    <label class="min-w-32 text-right" for="kategori">Kategori</label>
+    <input
+      type="text"
+      value="{{ form.kategori.value|default_if_none:''}}"
+      name="kategori"
+      placeholder="Kategori"
+      id="kategori"
+      class="border border-black py-2 px-3 flex-1"
+    />
+  </div>
+  <div class="inline-flex items-center gap-2">
+    <label class="min-w-32 text-right" for="tag">Tag</label>
+    <input
+      type="text"
+      value="{{ form.tag.value|default_if_none:''}}"
+      name="tag"
+      placeholder="Tag"
+      id="tag"
+      class="border border-black py-2 px-3 flex-1"
+    />
+  </div>
+
+  <div class="flex gap-2">
+    <span class="min-w-32"></span>
+    <div class="inline-flex items-center gap-2">
+      <button
+        class="bg-green-500 cursor-pointer hover:opacity-50 transition duration-300 text-white py-2 px-3 text-sm"
+        type="submit"
+      >
+        Simpan
+      </button>
+      <a
+        class="bg-blue-500 text-white py-2 px-3 text-sm cursor-pointer hover:opacity-50 transition duration-300"
+        href="{% url 'catatan:list' %}"
+        >Batal</a
+      >
+    </div>
+  </div>
+</form>
+
+{% endblock %}
