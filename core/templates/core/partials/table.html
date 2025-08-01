@@ -12,9 +12,13 @@
         <tbody>
             {% for obj in object_list %}
                 <tr class="odd:bg-gray-100 even:bg-white">
-                    <td>{{ obj.created_at|date:"d-m-Y" }}</td>
+                    <td>
+                      <a href="{% url nama_url_detail pk=obj.id %}">
+                        {{ obj.created_at|date:"d-m-Y" }}
+                      </a>
+                    </td>
                     {% for key in key_list %}
-                        <td>{{ obj|resolve:key }}</td>
+                        <td class="truncate max-w-40 select-none">{{ obj|resolve:key }}</td>
                     {% endfor %}
                     <td class="inline-flex gap-2 text-gray-500">
             <a

@@ -46,7 +46,7 @@ def catatan_list(request):
     context = {
         "catatan_list": obj_list,
         "key_list": ["judul", "isi_catatan"],
-        "kolom_list": ["tanggal", "Judul", "Catatan", "#"],
+        "kolom_list": ["tanggal", "Judul", "Catatan", "aksi"],
         "nama_url_delete": "catatan:delete",
         "nama_url_update": "catatan:update",
         "nama_url_detail": "catatan:detail",
